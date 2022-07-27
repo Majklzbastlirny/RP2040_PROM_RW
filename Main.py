@@ -13,6 +13,7 @@ import time
 import serial
 import serial.tools.list_ports
 from pathlib import Path
+import webbrowser
 
 debug = False
 if len(sys.argv) > 1:
@@ -92,6 +93,12 @@ elif Choice == 2:
     print("Entering write mode...\n")
 
 time.sleep(1)
+
+print(sys.path[0])
+if os.path.isfile(sys.path[0]+"/Library.txt") == False:
+        print("Library file not found. Please download the library and put it in the same folder as this script.")
+        webbrowser.open('https://raw.githubusercontent.com/Majklzbastlirny/RP2040_PROM_RW/main/Library.txt')
+        sys.exit()
 
 ReadLibrary = open(os.path.join(sys.path[0],"Library.txt"), "r")
 ReadLibrary_lines = len(ReadLibrary.readlines())
