@@ -1,7 +1,7 @@
 #PROM programmer reader&writer
 #Author: Michal Basler
 #Start date: 26.07.2022
-#Last update: 26.07.2022
+#Last update: 27.07.2022
 #Version: 1.0
 #License: GPLv3
 
@@ -94,11 +94,31 @@ elif Choice == 2:
 
 time.sleep(1)
 
-print(sys.path[0])
-if os.path.isfile(sys.path[0]+"/Library.txt") == False:
+if os.path.isfile(sys.path[0]+"/Librarsy.txt") == False:
         print("Library file not found. Please download the library and put it in the same folder as this script.")
-        webbrowser.open('https://raw.githubusercontent.com/Majklzbastlirny/RP2040_PROM_RW/main/Library.txt')
-        sys.exit()
+        print('https://raw.githubusercontent.com/Majklzbastlirny/RP2040_PROM_RW/main/Library.txt')
+        print("Do you want to open the link in your browser?")
+        print("1: Yes")
+        print("2: No")
+        while True:
+                try:
+                        GetLib = int(input("Enter number: "))
+                        if GetLib > 2 or GetLib < 1:
+                                print("Invalid choice")
+                                continue
+                        break
+                except ValueError:
+                        print("Invalid number")
+                        continue
+        if GetLib == 1:
+                print("Opening link in your browser...")
+                webbrowser.open('https://raw.githubusercontent.com/Majklzbastlirny/RP2040_PROM_RW/main/Library.txt')
+                sys.exit()
+        elif GetLib == 2:
+                print("Exiting...")
+                time.sleep(1)
+                sys.exit()
+        
 
 ReadLibrary = open(os.path.join(sys.path[0],"Library.txt"), "r")
 ReadLibrary_lines = len(ReadLibrary.readlines())
@@ -124,7 +144,6 @@ while True:
                 continue
 
 
-#PROM_Choice = int(input("\nEnter number: "))
 ReadLibrary.seek(0)
 Chosen = (ReadLibrary.readlines()[PROM_Choice-1])
 print("\nYou have selected: {}".format(Chosen.split("_")[0]))
