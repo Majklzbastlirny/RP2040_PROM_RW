@@ -94,7 +94,7 @@ elif Choice == 2:
 
 time.sleep(1)
 
-if os.path.isfile(sys.path[0]+"/Librarsy.txt") == False:
+if os.path.isfile(sys.path[0]+"/Library.txt") == False:
         print("Library file not found. Please download the library and put it in the same folder as this script.")
         print('https://raw.githubusercontent.com/Majklzbastlirny/RP2040_PROM_RW/main/Library.txt')
         print("Do you want to open the link in your browser?")
